@@ -86,9 +86,11 @@ function quit(){
 }
 
 
-/** List all the possible commands */
+/** List all the possible commands 
+ * @returns {void}
+*/
 function help(){
-  console.log('hello\nquit\nexit\nhelp\n')
+  console.log('\nThe possible commands are:\nhello\nquit\nexit\nhelp\n')
 }
 
 // The following line starts the application
