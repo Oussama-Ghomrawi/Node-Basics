@@ -50,6 +50,9 @@ function onDataReceived(text) {
   else if (text.trim().split(" ")[0] === "add") {
     add(text.trim().substring(4));
   }
+  else if (text.trim().split(" ")[0] === "remove") {
+    remove(text.trim().substring(6));
+  }
   else if(text.startsWith("hello")){
     text = text.trim();
     if(text.substring(0,5) == "hello"){
@@ -110,7 +113,7 @@ function help(){
   console.log('\nThe possible commands are:\nhello\nhello user\nquit\nexit\nhelp\n')
 }
 
-var listx = ["chicken","beef"];
+var listx = ["chicken","beef","potato","soup"];
 function list(){
 console.log(
 listx.map((element,key)=>`${key+1} - ${element}`).join ('\n'))
@@ -124,7 +127,10 @@ function add(text){
   listx.push(text)
 }
 
-
+function remove(index){
+  listx.splice(index-1, 1);
+  return;
+}
 
 // The following line starts the application
 startApp("Oussama Ghomrawi")
