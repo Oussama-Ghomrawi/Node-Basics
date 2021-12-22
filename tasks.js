@@ -45,9 +45,11 @@ function onDataReceived(text) {
     help();
   }
   else if (text === 'list\n') {
-    list();
+    list();}
+  
+  else if (text.trim().split(" ")[0] === "add") {
+    add(text.trim().substring(4));
   }
-
   else if(text.startsWith("hello")){
     text = text.trim();
     if(text.substring(0,5) == "hello"){
@@ -112,7 +114,17 @@ var listx = ["chicken","beef"];
 function list(){
 console.log(
 listx.map((element,key)=>`${key+1} - ${element}`).join ('\n'))
-
 }
+
+function add(text){
+  if(text.length===0){
+    console.log("you forgot to enter the task");
+    return;
+  }
+  listx.push(text)
+}
+
+
+
 // The following line starts the application
 startApp("Oussama Ghomrawi")
