@@ -110,7 +110,7 @@ function quit(){
  * @returns {void}
 */
 function help(){
-  console.log('\nThe possible commands are:\nhello\nhello user\nquit\nexit\nhelp\n')
+  console.log('\nThe possible commands are:\nhello\nhello user\nquit\nexit\nlist\nadd\nremove\nhelp\n')
 }
 
 var listx = ["chicken","beef","potato","soup"];
