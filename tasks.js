@@ -9,7 +9,7 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-function startApp(name){
+function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
@@ -40,33 +40,34 @@ function onDataReceived(text) {
   else if (text === 'exit\n') {
     quit();
   }
-  
+
   else if (text === 'help\n') {
     help();
   }
   else if (text === 'list\n') {
-    list();}
-  
+    list();
+  }
+
   else if (text.trim().split(" ")[0] === "add") {
     add(text.trim().substring(4));
   }
   else if (text.trim().split(" ")[0] === "remove") {
     remove(text.trim().substring(6));
   }
-  else if(text.startsWith("hello")){
+  else if (text.startsWith("hello")) {
     text = text.trim();
-    if(text.substring(0,5) == "hello"){
+    if (text.substring(0, 5) == "hello") {
       hello(text.substring(5));
     }
-    else{
+    else {
       unknownCommand(text);
     }
-   
-    }
-  else{
+
+  }
+  else {
     unknownCommand(text);
   }
-  
+
 }
 
 
@@ -77,8 +78,8 @@ function onDataReceived(text) {
  * @param  {string} c the text received
  * @returns {void}
  */
-function unknownCommand(c){
-  console.log('unknown command: "'+c.trim()+'"')
+function unknownCommand(c) {
+  console.log('unknown command: "' + c.trim() + '"')
 }
 
 
@@ -87,12 +88,12 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
-function hello(){
+function hello() {
   console.log('hello!')
 }
-function hello(x){
+function hello(x) {
   x.trim();
-  console.log("hello"+x+"!");
+  console.log("hello" + x + "!");
 }
 
 /**
@@ -100,7 +101,7 @@ function hello(x){
  *
  * @returns {void}
  */
-function quit(){
+function quit() {
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -109,27 +110,34 @@ function quit(){
 /** List all the possible commands 
  * @returns {void}
 */
-function help(){
+function help() {
   console.log('\nThe possible commands are:\nhello\nhello user\nquit\nexit\nlist\nadd\nremove\nhelp\n')
 }
 
-var listx = ["chicken","beef","potato","soup"];
-function list(){
-console.log(
-listx.map((element,key)=>`${key+1} - ${element}`).join ('\n'))
+var listx = ["chicken", "beef", "potato", "soup"];
+function list() {
+  console.log(
+    listx.map((element, key) => `${key + 1} - ${element}`).join('\n'))
 }
 
-function add(text){
-  if(text.length===0){
+function add(text) {
+  if (text.length === 0) {
     console.log("you forgot to enter the task");
     return;
   }
   listx.push(text)
 }
 
-function remove(index){
-  listx.splice(index-1, 1);
-  return;
+function remove(index) {
+  if (Number(index) >= 1 && Number(index) <= listx.length) {
+    listx.splice(index - 1, 1);
+    return;
+  }
+  if (index.length == 0) {
+    listx.pop(); return
+  }
+  console.log("The number you entered doesn't exist");
+
 }
 
 // The following line starts the application
