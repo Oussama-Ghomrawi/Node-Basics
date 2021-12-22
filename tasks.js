@@ -44,6 +44,7 @@ function onDataReceived(text) {
   else if (text === 'help\n') {
     help();
   }
+  
   else if(text.startsWith("hello")){
     text = text.trim();
     if(text.substring(0,5) == "hello"){
