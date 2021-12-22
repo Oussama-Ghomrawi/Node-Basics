@@ -44,6 +44,9 @@ function onDataReceived(text) {
   else if (text === 'help\n') {
     help();
   }
+  else if (text === 'list\n') {
+    list();
+  }
 
   else if(text.startsWith("hello")){
     text = text.trim();
@@ -105,5 +108,11 @@ function help(){
   console.log('\nThe possible commands are:\nhello\nhello user\nquit\nexit\nhelp\n')
 }
 
+var listx = ["chicken","beef"];
+function list(){
+console.log(
+listx.map((element,key)=>`${key+1} - ${element}`).join ('\n'))
+
+}
 // The following line starts the application
 startApp("Oussama Ghomrawi")
