@@ -121,7 +121,7 @@ function quit() {
  * @returns {void}
 */
 function help() {
-  console.log('\nThe possible commands are:\nhello\nhello user\nquit\nexit\nlist\nadd\nremove\nhelp\n')
+  console.log('\nThe possible commands are:\n-hello\n-hello user\n-quit\n-exit\n-list\n-add\n-remove\n-check\n\-uncheck\n-help\n')
 }
 
 var listx = [
