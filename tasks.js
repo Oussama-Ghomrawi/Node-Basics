@@ -52,8 +52,14 @@ function onDataReceived(text) {
   else if (text.trim().split(" ")[0] === "add") {
     add(text.trim().substring(4));
   }
-  else if(text.trim().split(" ")[0] === "edit") {
+  else if (text.trim().split(" ")[0] === "edit") {
     edit(text);
+  }
+  else if (text.trim().split(" ")[0] === "check") {
+    check(text);
+  }
+  else if (text.trim().split(" ")[0] === "uncheck") {
+    uncheck(text);
   }
   else if (text.trim().split(" ")[0] === "remove") {
     remove(text.trim().substring(6));
@@ -118,18 +124,38 @@ function help() {
   console.log('\nThe possible commands are:\nhello\nhello user\nquit\nexit\nlist\nadd\nremove\nhelp\n')
 }
 
-var listx = ["chicken", "beef", "potato", "soup"];
-function list() {
-  console.log(
-    listx.map((element, key) => `${key + 1} - ${element}`).join('\n'))
+var listx = [
+  {done: 'false', task:'Chicken'},
+  {done: 'true', task:'Beef'},
+  {done: 'false',  task:'Potato'},
+  {done: 'false', task:'Soup'},
+];
+
+function list(){
+  listx.map((item,index) => {
+    if(item.done === true){
+      console.log(`${index+1} - [✔] ${item.task}`);
+    }else{
+      console.log(`${index+1} - [ ] ${item.task}`);
+    }
+  })
 }
 
-function add(text) {
-  if (text.length === 0) {
-    console.log("you forgot to enter the task");
-    return;
+//function add(text) {
+  //if (text.length === 0) {
+    //console.log("you forgot to enter the task");
+    //return;
+  //}
+  //listx.push(text)
+//}
+
+function add(x){
+  let newtask = {
+    done: false,
+    task: x
   }
-  listx.push(text)
+  listx.push(newtask)
+  console.log(`The task was added`)
 }
 
 function remove(index) {
@@ -172,6 +198,29 @@ function edit(edits) {
 
 
 
+function check(text) {
+  if (text.trim().split(" ")[1] === undefined || text.trim().split(" ")[1] > listx.length) {
+    console.log(`Invalid number, try again`)
+  }
+  else {
+    for (let i = 0; i < listx.length; i++) {
+      if (i == text.trim().split(" ")[1] - 1) {
+        listx[i].done = true;
+      }
+    }
+  }
+}
+function uncheck(text) {
+  if (text.trim().split(" ")[1] === undefined || text.trim().split(" ")[1] > listx.length) {
+    console.log(`Invalid number, try again`)
+  } else {
+    for (let i = 0; i < listx.length; i++) {
+      if (i == text.trim().split(" ")[1] - 1) {
+        listx[i].done = false;
+      }
+    }
+  }
+}
 
 
 // The following line starts the application
