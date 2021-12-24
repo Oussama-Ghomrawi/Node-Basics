@@ -47,9 +47,13 @@ function onDataReceived(text) {
   else if (text === 'list\n') {
     list();
   }
+  
 
   else if (text.trim().split(" ")[0] === "add") {
     add(text.trim().substring(4));
+  }
+  else if(text.trim().split(" ")[0] === "edit") {
+    edit(text);
   }
   else if (text.trim().split(" ")[0] === "remove") {
     remove(text.trim().substring(6));
@@ -139,6 +143,36 @@ function remove(index) {
   console.log("The number you entered doesn't exist");
 
 }
+
+
+
+
+function edit(edits) {
+  var Y = Number(edits.trim().split(" ")[1]);
+  if (edits.trim().split(" ")[1] === undefined) {
+    console.log("No task was edited, Please enter some data!")
+  }
+  else if (Y > listx.length || Y === 0 || Y < 1) {
+    console.log("The task number you entered doesnt exist!")
+  }
+  else if (isNaN(Y)) {
+    listx.splice(listx.length - 1, 1, edits.trim().substring(5));
+    console.log("You successfully edited the last task")
+  }
+  else {
+    if (edits.trim().split(" ")[2] === undefined) {
+      console.log("No task was edited, Please enter some data!")
+    }
+    else {
+      listx.splice(Y - 1, 1, edits.trim().substring(7));
+      console.log("You successfully edited the task number " + Y)
+    }
+  }
+}
+
+
+
+
 
 // The following line starts the application
 startApp("Oussama Ghomrawi")
